@@ -1,0 +1,78 @@
+<ion-header>
+    <ion-navbar>
+        <ion-buttons start class="mgl-10">
+            <button ion-button icon-only (click)="closeModal()">
+                    <ion-icon fs-21 item-right name="ios-close-outline"></ion-icon>
+                </button>
+        </ion-buttons>
+        <ion-title>留言</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content #content>
+
+    <ion-list *ngIf="comments">
+        <!-- <ion-item *ngFor="let comment of comments?.slice().reverse()"> -->
+        <div *ngFor="let comment of comments">
+            <ion-item class="myComment">
+                <ion-avatar item-start>
+                    <img src="{{comment.postImg}}">
+                </ion-avatar>
+                <ion-row style="display: inline;">
+                    <span class="fs-16 fw-600 mgr-15">{{comment.postName}}</span>
+                    <span class="text-cm" style="white-space: normal;">{{comment.commentText}}</span>
+                </ion-row>
+            </ion-item>
+            <ion-row class="mgt-10 mgl-50">
+                <button ion-button clear small icon-left class="pdl-0">
+                    <span class="pull-right mgl-20 fs-13 text-grey-2 mgt-5">{{comment.dateCreated | DateFormat}}</span>
+                </button>
+                <button ion-button clear small icon-left (click)="replyComment(comment.$key, comment.postName)">回覆</button>
+                <button *ngIf="user.userId==comment.postBy" ion-button clear small icon-left (click)="removeComment(comment.$key, 0)">刪除</button>
+            </ion-row>
+            <div *ngIf="comment.replyList !== undefined" class="mgl-50">
+                <div *ngFor="let reply of comment.replyList">
+                    <ion-item class="myComment">
+                        <ion-avatar item-start>
+                            <img src="{{reply.postImg}}">
+                        </ion-avatar>
+                        <ion-row style="display: inline;">
+                            <span class="fs-16 fw-600 mgr-15">{{reply.postName}}</span>
+                            <span class="text-cm" style="white-space: normal;">{{reply.commentText}}</span>
+                        </ion-row>
+                    </ion-item>
+                    <ion-row class="mgt-10 mgl-50">
+                        <button ion-button clear small icon-left class="pdl-0">
+                            <span class="pull-right mgl-20 fs-13 text-grey-2 mgt-5">{{reply.dateCreated | DateFormat}}</span>
+                        </button>
+                        <button ion-button clear small icon-left (click)="replyComment(comment.$key, reply.postName)">回覆</button>
+                        <button *ngIf="user.userId==reply.postBy" ion-button clear small icon-left (click)="removeComment(comment.$key, reply.$key)">刪除</button>
+                    </ion-row>
+                </div>
+            </div>
+        </div>
+    </ion-list>
+
+</ion-content>
+
+<ion-footer>
+    <ion-grid>
+        <ion-row *ngIf="replyId!=''" style="background-color: #fff;">
+            <p style="margin-left:80px;">正在回覆{{replyName}}的留言</p>
+        </ion-row>
+        <ion-row>
+            <ion-col col-2>
+                <ion-avatar item-start>
+                    <img *ngIf="user" src="{{user.img}}">
+                </ion-avatar>
+            </ion-col>
+            <ion-col col-8>
+                <ion-textarea class="bdra-25 stroke stroke-grey-2 pdl-5" rows="1" placeholder="留言…" [(ngModel)]="commentText">
+                </ion-textarea>
+            </ion-col>
+            <ion-col col-2>
+                <button ion-button class=" pd-5 " (click)="postComment() " [disabled]="!commentText ">送出</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-footer>

@@ -1,0 +1,309 @@
+<!--
+  Generated template for the SearchPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <ion-title>專家</ion-title>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+    <div class="white">
+
+        <!-- slider begin -->
+        <div class="wrapper-slide">
+            <ion-slides autoplay="2500" loop="true" speed="500" pager="true" class="height-auto" #slide1>
+                <ion-slide (click)="onCallbackEvent('openList')">
+                    <img src="assets/img/home3.jpg" class="contain">
+                    <!-- <div class="slogan">
+                        <div padding class="wrapper-slogan pdr-50 white-opct text-left">
+                            <h3 class="title text-white spacing-2 fs-30 fw-600 mg-0 uppercase">-50%</h3>
+                            <h3 class="title text-white spacing-2 fs-16 fw-600 mg-0 uppercase">Christmas Day</h3>
+                        </div>
+                    </div> -->
+                </ion-slide>
+
+                <ion-slide (click)="onCallbackEvent('openList')">
+                    <img src="assets/img/home4.jpg" class="contain">
+                    <!-- <div class="slogan">
+                        <div padding class="wrapper-slogan pdr-50 white-opct text-left">
+                            <h3 class="title text-white fs-20 spacing-2 fw-600 mg-0 uppercase">Hot Collection</h3>
+                            <h4 class="fs-14 uppercase text-white spacing-2 mg-0 uppercase">simply dummy</h4>
+                        </div>
+                    </div> -->
+                </ion-slide>
+
+                <ion-slide (click)="onCallbackEvent('openList')">
+                    <img src="assets/img/home5.jpg" class="contain">
+                    <!-- <div class="slogan">
+                        <div padding class="wrapper-slogan pdr-50 white-opct text-left">
+                            <h3 class="title text-white fs-14 spacing-2 fw-600 uppercase mg-0">of the</h3>
+                            <h3 class="title text-white fs-20 spacing-2 fw-600 uppercase mg-0">printing</h3>
+                        </div>
+                    </div> -->
+                </ion-slide>
+            </ion-slides>
+        </div>
+        <!-- slider end -->
+
+        <!-- 推薦醫師 begin -->
+        <h3 padding class="uppercase spacing-1 mg-10">推薦醫師</h3>
+
+        <ion-card class="full-width mg-0 cyan">
+            <ion-card-content class="pd-0" (click)="onCallbackEvent('openList')">
+                <ion-row>
+                    <ion-col class="ovfl-hidden pd-0">
+                        <div class="view-cat ovfl-hidden">
+                            <img src="assets/img/expert/expert1.jpg" class="cover" />
+                        </div>
+                    </ion-col>
+                    <ion-col class="wrap-text text-center lama-vs-coban pd-30">
+                        <div class="">
+                            <h3 class="uppercase spacing-1 fs-16 fw-600">高定一</h3>
+                            <i class="fs-14 text-grey-4">台北、林口、桃園長庚紀念醫院中醫內兒科主治醫師</i>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+
+        <ion-card class="full-width mg-0 cyan">
+            <ion-card-content class="pd-0" (click)="onCallbackEvent('openList')">
+                <ion-row>
+                    <ion-col class="wrap-text text-center lot-vs-phan pd-30">
+                        <div class="">
+                            <h3 class="uppercase spacing-1 fs-14 fw-600">蘇　軒</h3>
+                            <i class="fs-14 text-grey-4">台北中山醫院專任主治醫師</i>
+                        </div>
+                    </ion-col>
+                    <ion-col class="ovfl-hidden pd-0">
+                        <div class="view-cat ovfl-hidden">
+                            <img src="assets/img/expert/expert2.jpg" />
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+
+        <ion-card class="full-width mg-0 cyan">
+            <ion-card-content class="pd-0" (click)="onCallbackEvent('openList')">
+                <ion-row>
+                    <ion-col class="ovfl-hidden pd-0">
+                        <div class="view-cat ovfl-hidden">
+                            <img src="assets/img/expert/expert3.jpg" class="cover" />
+                        </div>
+                    </ion-col>
+                    <ion-col class="wrap-text text-center hong-vs-lanon pd-30">
+                        <div class="">
+                            <h3 class="uppercase spacing-1 fs-16 fw-600">謝佳訓</h3>
+                            <i class="fs-14 text-grey-4">林口長庚紀念醫院腫瘤科副教授級主治醫師</i>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+        <!-- 推薦醫師 end -->
+
+
+        <!-- 推薦營養師 begin -->
+        <h3 padding class="uppercase spacing-1 mg-10">推薦營養師</h3>
+
+        <ion-card class="full-width mg-0 cyan">
+            <ion-card-content class="pd-0" (click)="onCallbackEvent('openList')">
+                <ion-row>
+                    <ion-col class="ovfl-hidden pd-0">
+                        <div class="view-cat ovfl-hidden">
+                            <img src="assets/img/expert/expert4.jpg" class="cover" />
+                        </div>
+                    </ion-col>
+                    <ion-col class="wrap-text text-center lama-vs-coban pd-30">
+                        <div class="">
+                            <h3 class="uppercase spacing-1 fs-16 fw-600">梁組嘉</h3>
+                            <i class="fs-14 text-grey-4">亞東紀念醫院 小兒部營養師</i>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+
+        <ion-card class="full-width mg-0 cyan">
+            <ion-card-content class="pd-0" (click)="onCallbackEvent('openList')">
+                <ion-row>
+                    <ion-col class="wrap-text text-center lot-vs-phan pd-30">
+                        <div class="">
+                            <h3 class="uppercase spacing-1 fs-14 fw-600">孫語霙</h3>
+                            <i class="fs-14 text-grey-4">信東生技股份有限公司 營養師/教育訓練講師</i>
+                        </div>
+                    </ion-col>
+                    <ion-col class="ovfl-hidden pd-0">
+                        <div class="view-cat ovfl-hidden">
+                            <img src="assets/img/expert/expert5.jpg" />
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+
+        <ion-card class="full-width mg-0 cyan">
+            <ion-card-content class="pd-0" (click)="onCallbackEvent('openList')">
+                <ion-row>
+                    <ion-col class="ovfl-hidden pd-0">
+                        <div class="view-cat ovfl-hidden">
+                            <img src="assets/img/expert/expert6.jpg" class="cover" />
+                        </div>
+                    </ion-col>
+                    <ion-col class="wrap-text text-center hong-vs-lanon pd-30">
+                        <div class="">
+                            <h3 class="uppercase spacing-1 fs-16 fw-600">曹雅姿</h3>
+                            <i class="fs-14 text-grey-4">林口長庚紀念醫院營養師</i>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+        <!-- 推薦營養師 end -->
+
+        <!-- 推薦體適能 begin -->
+        <h3 padding class="uppercase spacing-1 mg-10">推薦體適能</h3>
+
+        <ion-card class="full-width mg-0 cyan">
+            <ion-card-content class="pd-0" (click)="onCallbackEvent('openList')">
+                <ion-row>
+                    <ion-col class="ovfl-hidden pd-0">
+                        <div class="view-cat ovfl-hidden">
+                            <img src="assets/img/expert/expert7.jpg" class="cover" />
+                        </div>
+                    </ion-col>
+                    <ion-col class="wrap-text text-center lama-vs-coban pd-30">
+                        <div class="">
+                            <h3 class="uppercase spacing-1 fs-16 fw-600">邱誼玲</h3>
+                            <i class="fs-14 text-grey-4">禾馨婦產科 專任體能教練</i>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+
+        <ion-card class="full-width mg-0 cyan">
+            <ion-card-content class="pd-0" (click)="onCallbackEvent('openList')">
+                <ion-row>
+                    <ion-col class="wrap-text text-center lot-vs-phan pd-30">
+                        <div class="">
+                            <h3 class="uppercase spacing-1 fs-14 fw-600">健身卡波</h3>
+                            <i class="fs-14 text-grey-4">周傳易（綽號阿屁）/ 柯品瑄（筆名大頭）</i>
+                        </div>
+                    </ion-col>
+                    <ion-col class="ovfl-hidden pd-0">
+                        <div class="view-cat ovfl-hidden">
+                            <img src="assets/img/expert/expert8.jpg" />
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+
+        <ion-card class="full-width mg-0 cyan">
+            <ion-card-content class="pd-0" (click)="onCallbackEvent('openList')">
+                <ion-row>
+                    <ion-col class="ovfl-hidden pd-0">
+                        <div class="view-cat ovfl-hidden">
+                            <img src="assets/img/expert/expert9.jpg" class="cover" />
+                        </div>
+                    </ion-col>
+                    <ion-col class="wrap-text text-center hong-vs-lanon pd-30">
+                        <div class="">
+                            <h3 class="uppercase spacing-1 fs-16 fw-600">林家恩</h3>
+                            <i class="fs-14 text-grey-4">林距離健康事業股份有限公司執行長</i>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+        <!-- 推薦體適能 end -->
+
+
+        <!-- 全部專家 begin -->
+        <h3 padding class="uppercase spacing-1 mg-10">全部專家</h3>
+
+        <ion-searchbar (ionInput)="getItems($event)" color="primary" class="light-searchbar lama-vs-coban text-white"></ion-searchbar>
+
+        <ion-list no-lines>
+            <ion-item>
+                <ion-thumbnail class="shadow-2 bdra-5 ovfl-hidden" item-start>
+                    <img src="assets/img/expert/expert1.jpg">
+                </ion-thumbnail>
+                <h2 class="spacing-1 fw-600 text-grey-5">高定一</h2>
+                <textarea class="fs-11">台北、林口、桃園長庚紀念醫院中醫內兒科主治醫師</textarea>
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail class="shadow-2 bdra-5 ovfl-hidden" item-start>
+                    <img src="assets/img/expert/expert2.jpg">
+                </ion-thumbnail>
+                <h2 class="spacing-1 fw-600 text-grey-5">蘇　軒</h2>
+                <textarea class="fs-11">台北中山醫院專任主治醫師</textarea>
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail class="shadow-2 bdra-5 ovfl-hidden" item-start>
+                    <img src="assets/img/expert/expert3.jpg">
+                </ion-thumbnail>
+                <h2 class="spacing-1 fw-600 text-grey-5">謝佳訓</h2>
+                <textarea class="fs-11">林口長庚紀念醫院腫瘤科副教授級主治醫師</textarea>
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail class="shadow-2 bdra-5 ovfl-hidden" item-start>
+                    <img src="assets/img/expert/expert4.jpg">
+                </ion-thumbnail>
+                <h2 class="spacing-1 fw-600 text-grey-5">梁組嘉</h2>
+                <textarea class="fs-11">亞東紀念醫院 小兒部營養師</textarea>
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail class="shadow-2 bdra-5 ovfl-hidden" item-start>
+                    <img src="assets/img/expert/expert5.jpg">
+                </ion-thumbnail>
+                <h2 class="spacing-1 fw-600 text-grey-5">孫語霙</h2>
+                <textarea class="fs-11">信東生技股份有限公司 營養師/教育訓練講師</textarea>
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail class="shadow-2 bdra-5 ovfl-hidden" item-start>
+                    <img src="assets/img/expert/expert6.jpg">
+                </ion-thumbnail>
+                <h2 class="spacing-1 fw-600 text-grey-5">曹雅姿</h2>
+                <textarea class="fs-11">林口長庚紀念醫院營養師</textarea>
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail class="shadow-2 bdra-5 ovfl-hidden" item-start>
+                    <img src="assets/img/expert/expert7.jpg">
+                </ion-thumbnail>
+                <h2 class="spacing-1 fw-600 text-grey-5">邱誼玲</h2>
+                <textarea class="fs-11">禾馨婦產科 專任體能教練</textarea>
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail class="shadow-2 bdra-5 ovfl-hidden" item-start>
+                    <img src="assets/img/expert/expert8.jpg">
+                </ion-thumbnail>
+                <h2 class="spacing-1 fw-600 text-grey-5">健身卡波</h2>
+                <textarea class="fs-11">周傳易（綽號阿屁）/ 柯品瑄（筆名大頭）</textarea>
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail class="shadow-2 bdra-5 ovfl-hidden" item-start>
+                    <img src="assets/img/expert/expert9.jpg">
+                </ion-thumbnail>
+                <h2 class="spacing-1 fw-600 text-grey-5">林家恩</h2>
+                <textarea class="fs-11">林距離健康事業股份有限公司執行長</textarea>
+            </ion-item>
+        </ion-list>
+        <!-- 全部專家 end -->
+
+
+
+    </div>
+
+
+</ion-content>

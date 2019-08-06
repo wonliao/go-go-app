@@ -1,0 +1,244 @@
+<!--
+  Generated template for the TimelinePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- <ion-header>
+    <ion-navbar>
+        <ion-title *ngIf="timelineId==null">首頁</ion-title>
+        <ion-title *ngIf="timelineId">貼文</ion-title>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-buttons end (click)="messageClick()">
+            <button ion-button icon-only>
+                <ion-icon name="chatbubbles"></ion-icon>
+              </button>
+
+        </ion-buttons>
+    </ion-navbar>
+</ion-header> -->
+
+<ion-content>
+
+    <!-- 社團貼文 -->
+    <ion-navbar *ngIf="groupName" hideBackButton>
+        <span class="s1"></span>
+        <span class="s2"></span>
+        <span class="s3"></span>
+        <span class="s4"></span>
+        <ion-buttons start>
+            <button ion-button tappable (click)="back()">
+                <ion-icon ios="md-arrow-round-back" md="md-arrow-round-back"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>{{groupName}}</ion-title>
+    </ion-navbar>
+
+    <!-- 指定貼文 -->
+    <ion-navbar *ngIf="timelineId" hideBackButton>
+        <ion-buttons start>
+            <button ion-button tappable (click)="back()">
+                <ion-icon ios="md-arrow-round-back" md="md-arrow-round-back"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title class="timelineId">貼文</ion-title>
+    </ion-navbar>
+
+    <!-- 沒有貼文 -->
+    <div class="empty-list" *ngIf="timelineData.length<=0">
+        <h1>
+            <ion-icon *ngIf="groupId!=''" name="md-people"></ion-icon>
+            <ion-icon *ngIf="groupId==''" name="md-clipboard"></ion-icon>
+        </h1>
+        <p>很抱歉，目前還沒有貼文。</p>
+    </div>
+
+    <ion-card *ngFor="let item of timelineData">
+        <ion-item *ngIf="item">
+            <ion-avatar item-left>
+                <img *ngIf="item.avatar" src="{{item.avatar}}">
+            </ion-avatar>
+            <h2 *ngIf="item.username">{{item.username}}</h2>
+            <p *ngIf="item.dateCreated">{{item.dateCreated}}</p>
+            <ion-icon *ngIf="item.isSelf" item-right ios="ios-more-outline" md="md-more" (click)="reportPost(item)"></ion-icon>
+
+        </ion-item>
+
+        <ion-row>
+            <div style="width:100%; height: 1px; background-color: lightgray;"></div>
+        </ion-row>
+
+        <img *ngIf="item.image" src="{{item.image}}" style="width:100%" (click)="autoLikePost(item)">
+
+        <div *ngIf="item.weight" class="kg_div">{{item.weight}}KG</div>
+        <div *ngIf="item.postText" class="kg_div">{{item.postText}}</div>
+
+        <div *ngIf="item.showType!='post' && !item.image" class="main-img" (click)="autoLikePost(item)">
+            <div class="img-inner">
+                <div style="position: relative;">
+                    <div style="color: rgb(255, 255, 255); background: url(assets/images/text-bg.jpg); width: 100%;">
+
+                        <div *ngIf="item.showType=='text'" style="display: flex; align-items: center; justify-content: center; height: 200px;">
+                            <div *ngIf="item.postText" class="text-center" style="font-size: 20px; font-weight:bold;">
+                                {{item.postText}}
+                            </div>
+                        </div>
+
+                        <div *ngIf="item.showType=='weight'" class="text-white" style="align-items: center; justify-content: center;">
+                            <ion-item *ngIf="item.weight" style="background: transparent !important; height: 200px;">
+                                <div class="text-center" style="font-size: 26px; font-weight:bold;">
+                                    登入體重
+                                </div>
+                                <div class="text-center" style="font-size: 48px; font-weight:bold;">
+                                    {{item.weight}} 公斤
+                                </div>
+                            </ion-item>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ion-row>
+            <div style="width:100%; height: 1px; background-color: lightgray;"></div>
+        </ion-row>
+
+        <ion-row text-center *ngIf="item">
+            <ion-col col-3 style="margin:auto">
+                <button ion-button icon-left clear small color="dark" (click)="likePost(item)" *ngIf="!item.isLike">
+                    <ion-icon name="ios-star-outline"></ion-icon>
+                    <div> {{item.likes}} Like </div>
+                </button>
+                <button ion-button icon-left clear small color="custom" (click)="delikePost(item)" *ngIf="item.isLike">
+                    <ion-icon name="ios-star-outline"></ion-icon>
+                    <div>{{item.likes}} Like</div>
+                </button>
+            </ion-col>
+            <ion-col col-3 style="margin:auto">
+                <button ion-button icon-left clear small color="dark" (click)="commentPost(item)" *ngIf="!item.isComment">
+                    <ion-icon name="ios-chatbubbles-outline"></ion-icon>
+                    <div>{{item.commentsLength}} 留言</div>
+                </button>
+                <button ion-button icon-left clear small color="custom" (click)="commentPost(item)" *ngIf="item.isComment">
+                    <ion-icon name="ios-chatbubbles-outline"></ion-icon>
+                    <div>{{item.commentsLength}} 留言</div>
+                </button>
+            </ion-col>
+            <ion-col col-6>
+
+                <!-- 飲食顯示 蛋/脂/醣 -->
+                <ion-row *ngIf="item.postType=='food' && item.isExpert!='true'" (click)="expectSubmit(item)">
+                    <ion-col>
+                        <div class="icon-quest-circle">
+                            <div class="circle-inner">
+                                <!-- 蛋白質 -->
+                                <div *ngIf="item.protein" class="quest">
+                                    <span class="fs-14">蛋</span><span class="fs-14" style="color: #aee5ed;">{{item.protein}}</span>
+                                </div>
+                                <div *ngIf="!item.protein" class="quest"><span class="fs-28">?</span></div>
+                            </div>
+                        </div>
+                        <div class="icon-quest-circle">
+                            <div class="circle-inner">
+                                <!-- 脂肪 -->
+                                <div *ngIf="item.protein" class="quest">
+                                    <span class="fs-14">脂</span><span class="fs-14" style="color: #fd9fa3;">{{item.fat}}</span>
+                                </div>
+                                <div *ngIf="!item.protein" class="quest"><span class="fs-28">?</span></div>
+                            </div>
+                        </div>
+                        <div class="icon-quest-circle">
+                            <div class="circle-inner">
+                                <!-- 醣類 -->
+                                <div *ngIf="item.protein" class="quest">
+                                    <span class="fs-14">醣</span><span class="fs-14" style="color: #fcdb80;">{{item.carbohydrate}}</span>
+                                </div>
+                                <div *ngIf="!item.protein" class="quest"><span class="fs-28">?</span></div>
+                            </div>
+                        </div>
+                    </ion-col>
+                </ion-row>
+
+                <!-- 身體 及 貼文 顯示體重及體脂 -->
+                <ion-row *ngIf="item.postType!='food'">
+                    <ion-col col-2>
+                    </ion-col>
+                    <ion-col col-5>
+                        <div *ngIf="item.weight" style="width: 100%; margin: 0 auto;" class="stroke stroke-1 stroke-black" [ngClass]="item.menstruation?'is_menstruation' :''">
+                            <span tabindex="-1" class="trigger" style="display:inline-block;">
+                                <span class="fw-700">{{item.weight}}</span>
+                            <span style="display: block;">KG</span>
+                            </span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-5>
+                        <div *ngIf="item.bmi" style="width:100%; margin: 0 auto;" class="stroke stroke-1 stroke-black">
+                            <span tabindex="-1" class="trigger" style="display:inline-block;">
+                                <span class="fw-700">{{item.bmi}}</span>
+                            <span style="display: block;">BMI</span>
+                            </span>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="item.commentsLength>0">
+            <div style="width:100%; height: 1px; background-color: lightgray;"></div>
+        </ion-row>
+
+        <!-- 留言 -->
+        <ion-row *ngIf="item.commentsLength>0" (click)="commentPost(item)">
+            <ion-list no-lines class="lst-no-background lst-comments ani-bottom-to-top" style="width:100%;">
+                <div *ngFor="let comment of item.comments; let i=index">
+                    <ion-item *ngIf="i >= (item.comments.length - 3)" class="myComment ani-bottom-to-left" style="padding-left:10px;">
+                        <ion-avatar item-start>
+                            <img *ngIf="comment.postImg" src="{{comment.postImg}}">
+                        </ion-avatar>
+                        <ion-row style="display: inline;">
+                            <span *ngIf="comment.postName" class="fs-16 fw-600 mgr-15">{{comment.postName}}</span>
+                            <span *ngIf="comment.commentText" class="text-cm" style="white-space: normal;">{{comment.commentText}}</span>
+                        </ion-row>
+                    </ion-item>
+                </div>
+            </ion-list>
+        </ion-row>
+
+        <ion-row *ngIf="item" style="border-top: lightgray 1px solid;">
+            <ion-col col-2 style="padding-left:10px;">
+                <ion-avatar item-start>
+                    <img *ngIf="user.img" src="{{user.img}}">
+                </ion-avatar>
+            </ion-col>
+            <ion-col col-8>
+                <ion-textarea class="bdra-25 stroke stroke-grey-2 pdl-5" rows="1" placeholder="留言…" [(ngModel)]="item.commentText"></ion-textarea>
+            </ion-col>
+            <ion-col col-2>
+                <button ion-button class="pd-5" (click)="postComment(item.$key, item)" [disabled]="!item.commentText">送出</button>
+            </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="item">
+            <div style="width:100%; height: 6px; background-color: lightgray;"></div>
+        </ion-row>
+    </ion-card>
+
+    <ion-infinite-scroll *ngIf="timelineId==''" (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+
+    <ion-fab #groupFab id="groupFab" bottom *ngIf="groupId!=''" class="pdb-5 iphone-x" style="right: 0 !important; margin: 25px;">
+        <button ion-fab color="fabs-color" class="button-large shadow-3">
+            <ion-icon name="md-add"></ion-icon>
+        </button>
+        <ion-fab-list side="top" class="pdb-5 iphone-x">
+            <button ion-fab color="fabs-color" (click)="addGroupPost('post', groupId, groupFab)"><label>發表1<br />貼文</label></button>
+            <button ion-fab color="fabs-color" (click)="addGroupPost('food', groupId, groupFab)"><label>紀錄<br />飲食</label></button>
+            <button ion-fab color="fabs-color" (click)="addGroupPost('body', groupId, groupFab)"><label>紀錄<br />身體</label></button>
+        </ion-fab-list>
+    </ion-fab>
+
+</ion-content>

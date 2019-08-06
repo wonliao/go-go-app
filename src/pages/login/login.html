@@ -1,0 +1,102 @@
+<ion-content>
+
+    <div class="white pd-10">
+        <label class="text-cyan fs-24">APP</label>
+    </div>
+    <hr />
+
+    <!-- Social Login Buttons -->
+    <div class="bottom">
+        <div class="form" *ngIf="mode == 'main'">
+            <div>
+
+                <button ion-button icon-left class="line" tappable (click)="loginProvider.loginLine()">
+                    <img src="assets/images/icon_line.png" style="height: 50px; left: 5px; position: absolute;">
+                    與LINE連動
+                </button>
+
+                <button ion-button icon-left class="facebook mgt-20" tappable (click)="loginProvider.facebookLogin()">
+                    <img src="assets/images/icon_fb.png" style="height: 50px; left: 5px; position: absolute;">
+                    Facebook 登入
+                </button>
+
+                <ion-row>
+                    <p class="section text-black fs-13 text-center">
+                        或
+                    </p>
+                </ion-row>
+
+                <form [formGroup]="emailPasswordForm">
+                    <ion-list>
+                        <ion-item no-lines>
+                            <ion-input type="email" formControlName="email" placeholder="Email" value="ben@nulla.com.tw"></ion-input>
+                        </ion-item>
+                        <div class="mg-10"></div>
+                        <ion-item no-lines>
+                            <ion-input type="password" formControlName="password" placeholder="密碼" value="111111">
+                            </ion-input>
+                        </ion-item>
+
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col size="6">
+                                    <span class="pull-left" style="color:#3366BB" tappable (click)="clearForms(); mode = 'forgotPassword'">忘記密碼</span>
+                                </ion-col>
+                                <ion-col size="6">
+                                    <span class="pull-right" style="color:#3366BB" tappable (click)="clearForms(); mode = 'register'">我要註冊</span>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+
+                        <button ion-button icon-left class="dark" tappable (click)="login()" [disabled]="!emailPasswordForm.valid">登入</button>
+                    </ion-list>
+                </form>
+
+            </div>
+        </div>
+
+        <!-- 我要註冊 Form -->
+        <div *ngIf="mode == 'register'" class="form bdra-5 stroke stroke-1 stroke-grey pd-10 white">
+            <button class="clear mgb-20" ion-button icon-only tappable (click)="mode = 'main'">
+              <ion-icon name="md-close"></ion-icon>
+            </button>
+            <form [formGroup]="emailPasswordForm">
+                <ion-list>
+                    <ion-item no-lines>
+                        <p class="fs-26 text-center text-black">會員註冊</p>
+                    </ion-item>
+                    <ion-item no-lines>
+                        <ion-label color="primary" stacked>Email 帳號</ion-label>
+                        <ion-input type="email" formControlName="email" placeholder="Email Address"></ion-input>
+                    </ion-item>
+                    <ion-item no-lines class="pdt-10">
+                        <ion-label class="full-width" color="primary" stacked>密碼(至少8個字元以上)</ion-label>
+                        <ion-input type="password" formControlName="password" placeholder="Your Password"></ion-input>
+                    </ion-item>
+                </ion-list>
+                <button ion-button icon-left class="dark" tappable (click)="register()" [disabled]="!emailPasswordForm.valid">送出</button>
+            </form>
+        </div>
+
+        <!-- 忘記密碼 Form -->
+        <div *ngIf="mode == 'forgotPassword'" class="form bdra-5 stroke stroke-1 stroke-grey pd-10 white">
+            <button class="clear mgb-20" ion-button icon-right icon-only tappable (click)="clearForms(); mode = 'main'">
+              <ion-icon name="md-close"></ion-icon>
+            </button>
+            <form [formGroup]="emailForm">
+                <ion-list>
+                    <ion-item no-lines>
+                        <p class="fs-26 text-center text-black">忘記密碼</p>
+                        <p class="text-black mgt-20 mgb-20" style="white-space:pre-wrap;">輸入您的登入Email，將會寄送郵件到您的Email，協助您做密碼變更
+                        </p>
+                    </ion-item>
+                    <ion-item no-lines>
+                        <ion-input type="email" formControlName="email" placeholder="登入帳號"></ion-input>
+                    </ion-item>
+                </ion-list>
+                <button ion-button icon-left class="dark" tappable (click)="forgotPassword()" [disabled]="!emailForm.valid">送出</button>
+            </form>
+        </div>
+
+    </div>
+</ion-content>

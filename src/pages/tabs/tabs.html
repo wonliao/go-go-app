@@ -1,0 +1,20 @@
+<ion-tabs #myTabs top selectedIndex="0" style="">
+    <ion-tab [root]="timeline" tabIcon="md-home" tabBadgeStyle="danger"></ion-tab>
+    <ion-tab [root]="search" tabIcon="md-search"></ion-tab>
+    <ion-tab [root]="messages" tabIcon="md-chatbubbles"></ion-tab>
+    <ion-tab [root]="groups" tabIcon="md-people"></ion-tab>
+    <ion-tab [root]="notification" tabIcon="md-notifications"></ion-tab>
+    <ion-tab [root]="profile" tabIcon="md-contact"></ion-tab>
+</ion-tabs>
+
+
+<ion-fab #fab id="fab" bottom class="pdb-5 iphone-x" style="right: 0 !important; margin: 25px;">
+    <button ion-fab color="fabs-color" class="button-large shadow-3">
+        <ion-icon name="md-add"></ion-icon>
+    </button>
+    <ion-fab-list side="top" class="pdb-5 iphone-x">
+        <button ion-fab color="fabs-color" (click)="addPost('post', fab)"><label>發表<br />貼文</label></button>
+        <button ion-fab color="fabs-color" (click)="addPost('food', fab)"><label>紀錄<br />飲食</label></button>
+        <button ion-fab color="fabs-color" (click)="addPost('body', fab)"><label>紀錄<br />身體</label></button>
+    </ion-fab-list>
+</ion-fab>

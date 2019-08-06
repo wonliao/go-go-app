@@ -1,0 +1,101 @@
+page-timeline {
+    .is_menstruation {
+        background: rgb(255, 136, 194);
+    }
+    .icon-quest-circle {
+        display: inline-block;
+        height: 33px;
+    }
+    .circle-inner {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #edeff0;
+        position: relative;
+    }
+    .quest {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: #fff;
+        color: #c1c2c4;
+        text-align: center;
+        line-height: 36px;
+    }
+    .kg_div {
+        position: absolute;
+        top: 62px;
+        right: 0;
+        height: 42px;
+        background: rgba(0, 0, 0, .75);
+        min-width: 88px;
+        text-align: center;
+        color: white;
+        line-height: 42px;
+        font-weight: 400;
+        font-size: 14px;
+        padding: 0 10px;
+    }
+    ion-avatar img,
+    ion-thumbnail img {
+        border-radius: 50%;
+        overflow: hidden;
+        width: 36px;
+        height: 36px;
+    }
+    .myComment .item-inner {
+        background: #eee;
+        margin: 4px 16px 4px 0;
+        border-radius: 20px;
+        padding: 5px;
+    }
+    .toolbar-title-ios {
+        color: #7ac8cb !important;
+    }
+    .timelineId .toolbar-title-ios {
+        color: white !important;
+    }
+    .toolbar-background-ios {
+        background-color: #7ac8cb;
+    }
+    .s1 {
+        width: 100%;
+        height: 44px;
+        display: inline-block;
+        background: linear-gradient(70deg, transparent 10%, #9cdcdf 0);
+        position: absolute;
+        top: 0;
+    }
+    .s2 {
+        width: 100%;
+        height: 44px;
+        display: inline-block;
+        background: linear-gradient(70deg, transparent 13%, #fff 0);
+        position: absolute;
+        top: 0;
+    }
+    .s3 {
+        width: 100%;
+        height: 44px;
+        display: inline-block;
+        background: linear-gradient(70deg, transparent 75%, #9cdcdf 0);
+        position: absolute;
+        top: 0;
+    }
+    .s4 {
+        width: 100%;
+        height: 44px;
+        display: inline-block;
+        background: linear-gradient(70deg, transparent 78%, #7ac8cb 0);
+        position: absolute;
+        top: 0;
+    }
+    .bar-button-default-ios,
+    .bar-button-default.bar-button-ios-default,
+    .bar-button-clear-ios-default {
+        color: white;
+    }
+}

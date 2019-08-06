@@ -1,0 +1,65 @@
+<!-- <ion-header>
+    <ion-navbar>
+        <ion-title>聊天</ion-title>
+    </ion-navbar>
+</ion-header> -->
+
+<ion-content>
+
+    <!-- <ion-list class="avatar-list" *ngIf="customerServiceUser">
+
+        <ion-item no-lines tappable (click)="message(customerServiceUser.userId)">
+
+            <ion-avatar item-left>
+                <ion-icon name="radio-button-on" class="online" [ngClass]="customerServiceUser.isOnline?'isOnline' : 'isOffline'"></ion-icon>
+                <img src="{{customerServiceUser.img}}">
+            </ion-avatar>
+
+            <div>
+                <h2>{{customerServiceUser.username}}</h2>
+            </div>
+
+        </ion-item>
+    </ion-list> -->
+
+    <ion-list class="avatar-list" *ngIf="customerServiceUser">
+
+        <ion-item-sliding no-lines tappable (click)="message(customerServiceUser.userId)" class="ani-right-to-left">
+            <ion-item class="white" no-lines>
+                <ion-avatar item-start>
+                    <img src="{{customerServiceUser.img}}">
+                </ion-avatar>
+
+                <h2 *ngIf="customerServiceUser.isExpert" no-lines style="color:#8acfba">{{customerServiceUser.username}} <img style="width:12px;" src="assets/images/so88_expert.png" /></h2>
+                <h2 *ngIf="!customerServiceUser.isExpert" no-lines>{{customerServiceUser.username}}</h2>
+
+
+                <div class="full-width" style="white-space: normal;">{{customerServiceUser.description}}</div>
+                <ion-note *ngIf="customerServiceUser.isOnline" item-end class="fs-12 text-green">線上</ion-note>
+            </ion-item>
+
+        </ion-item-sliding>
+
+    </ion-list>
+
+    <ion-list class="avatar-list" *ngIf="conversations && conversations.length > 0">
+
+        <!-- <ion-item *ngFor="let conversation of conversations | conversationFilter:searchFriend" no-lines tappable (click)="message(conversation.$key)">
+        </ion-item> -->
+        <ion-item-sliding *ngFor="let conversation of conversations | conversationFilter:searchFriend" no-lines tappable (click)="message(conversation.friend.userId)" class="ani-right-to-left">
+            <ion-item class="white" no-lines>
+                <ion-avatar item-start>
+                    <img src="{{conversation.friend.img}}">
+                </ion-avatar>
+
+                <h2 no-lines>{{conversation.friend.username}}</h2>
+
+                <div class="full-width" style="white-space: normal;">{{conversation.friend.description}}</div>
+                <ion-note *ngIf="conversation.friend.isOnline" item-end class="fs-12 text-green">線上</ion-note>
+            </ion-item>
+
+        </ion-item-sliding>
+
+
+    </ion-list>
+</ion-content>

@@ -1,0 +1,172 @@
+<!-- <ion-header>
+    <ion-navbar>
+        <ion-title *ngIf="user">{{user.username}}</ion-title>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header> -->
+
+<ion-content>
+
+    <ion-list ion-item style="margin:0 !important; padding: 0 !important;">
+        <div style="width:50px; float:right;">
+            <button ion-button clear (click)="openSideMenuPage()">
+                <ion-icon name="ios-settings" style="color: black; font-size: 1.8em;" ></ion-icon>
+            </button>
+        </div>
+    </ion-list>
+
+    <div *ngIf="user">
+        <ion-row>
+            <ion-col col-7>
+                <ion-row>
+                    <ion-col col-6>
+                        <div class="profile">
+                            <img src="{{user.img}}" tappable (click)="setPhoto()" />
+                        </div>
+                    </ion-col>
+                    <ion-col col-6 style="margin:auto;">
+                        <span tappable class="username text-black">{{user.username}} </span>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+            <ion-col col-5 style="margin:auto;">
+                <p tappable class="fs-28 text-black">{{targetWeight}}</p>
+            </ion-col>
+        </ion-row>
+    </div>
+
+    <ion-row *ngIf="user" class="mgt-10" style="border-top:#757575 1px solid; border-bottom:#757575 1px solid;">
+        <ion-col class="text-center">
+            <p class="fw-600 fs-18 mgb-0 text-black">{{user.photosCount}}</p>
+            <p class="fs-13 text-grey-4 mgt-0">貼文</p>
+        </ion-col>
+        <ion-col class="text-center">
+            <p class="fw-600 fs-18 mgb-0 text-black">{{user.followerCount}}</p>
+            <p class="fs-13 text-grey-4 mgt-0">位追蹤者</p>
+        </ion-col>
+        <ion-col class="text-center">
+            <p class="fw-600 fs-18 mgb-0 text-black">{{user.followingCount}}</p>
+            <p class="fs-13 text-grey-4 mgt-0">追蹤中</p>
+        </ion-col>
+    </ion-row>
+
+    <ion-row class="text-center" class="pdt-20 text-center">
+        <ion-col>
+            <button ion-button (click)="openProfileDetial()">
+                <div>
+                    <ion-icon name="body"></ion-icon>
+                    <div>
+                        <label>個人貼文</label>
+                    </div>
+                </div>
+            </button>
+        </ion-col>
+        <ion-col>
+            <button ion-button (click)="openSettingPage()">
+                <div>
+                    <ion-icon name="settings"></ion-icon>
+                    <div>
+                        <label>基本資料</label>
+                    </div>
+                </div>
+            </button>
+        </ion-col>
+    </ion-row>
+
+    <ion-toolbar no-border-top class="mgt-20 white">
+        <ion-segment [(ngModel)]="information" class="segment-line-balance text-black white">
+            <ion-segment-button class="fs-14" value="weight" (click)="infoBtnClick('weight')">
+                體重
+            </ion-segment-button>
+            <ion-segment-button class="fs-14" value="calorie" (click)="infoBtnClick('calorie')">
+                卡路里
+            </ion-segment-button>
+            <ion-segment-button class="fs-14" value="bloodPressure" (click)="infoBtnClick('bloodPressure')">
+                血壓
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+
+    <div [ngSwitch]="information">
+        <ion-list *ngSwitchCase="'weight'">
+            <!-- 圖表 -->
+            <ion-card>
+                <ion-card-content class="text-align ">
+                    <button ion-button class="dateButton " (click)="chartBtnClick('weight', 7)">週</button>
+                    <button ion-button class="dateButton " (click)="chartBtnClick('weight', 30)">月</button>
+                    <button ion-button class="dateButton " (click)="chartBtnClick('weight', 365)">年</button>
+                    <canvas #weightCanvas width="100 " height="90 "></canvas>
+                    <hr />
+                    <canvas #bfpCanvas width="100" height="90"></canvas>
+                </ion-card-content>
+            </ion-card>
+        </ion-list>
+        <ion-list *ngSwitchCase="'calorie'">
+            <!-- 圖表 -->
+            <ion-card>
+                <ion-card-content class="text-align ">
+                    <button ion-button class="dateButton " (click)="chartBtnClick('calorie', 7)">週</button>
+                    <button ion-button class="dateButton " (click)="chartBtnClick('calorie', 30)">月</button>
+                    <button ion-button class="dateButton " (click)="chartBtnClick('calorie', 365)">年</button>
+                    <canvas #calorieCanvas width="100 " height="90 "></canvas>
+                </ion-card-content>
+            </ion-card>
+        </ion-list>
+        <ion-list *ngSwitchCase="'bloodPressure'">
+            <!-- 圖表 -->
+            <ion-card>
+                <ion-card-content class="text-align ">
+                    <button ion-button class="dateButton " (click)="chartBtnClick('bloodPressure', 7)">週</button>
+                    <button ion-button class="dateButton " (click)="chartBtnClick('bloodPressure', 30)">月</button>
+                    <button ion-button class="dateButton " (click)="chartBtnClick('bloodPressure', 365)">年</button>
+                    <canvas #bloodPressureCanvas width="100 " height="90 "></canvas>
+                </ion-card-content>
+            </ion-card>
+        </ion-list>
+    </div>
+
+    <div>
+        <ion-list>
+            <ion-item class="ext-grey-5 fs-14" style="border-bottom: #c8c7cc 1px solid !important;">
+                每日熱量上限
+                <ion-note item-end>
+                    <span class="text-red">1500</span> cal
+                </ion-note>
+            </ion-item>
+
+            <ion-item class="ext-grey-5 fs-14" style="border-bottom: #c8c7cc 1px solid !important;">
+                醣成癮指數
+                <ion-note item-end>
+                    42.82
+                </ion-note>
+            </ion-item>
+
+            <ion-item class="ext-grey-5 fs-14" style="border-bottom: #c8c7cc 1px solid !important;">
+                目前BMI
+                <ion-note item-end>
+                    15
+                </ion-note>
+            </ion-item>
+
+        </ion-list>
+    </div>
+
+    <!-- 相片解說 -->
+    <ion-item no-lines>
+        <ion-label class="text-grey-5 fs-14" stacked>相片解說</ion-label>
+        <ion-textarea [(ngModel)]="postText" cols="30" rows="4" placeholder="相片解說" class="stroke stroke-2 stroke-grey-3 fs-14">
+        </ion-textarea>
+    </ion-item>
+
+    <!-- 相片解說 -->
+    <ion-item no-lines>
+        <ion-label class="text-grey-5 fs-14" stacked>相片解說</ion-label>
+        <ion-textarea [(ngModel)]="postText" cols="30" rows="4" placeholder="相片解說" class="stroke stroke-2 stroke-grey-3 fs-14">
+        </ion-textarea>
+    </ion-item>
+
+
+
+</ion-content>

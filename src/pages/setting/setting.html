@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>基本資料</ion-title>
+        <ion-buttons end (click)="submitClick()">
+            <button [disabled]="!username || !birth || !weight || !height">確定</button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <div *ngIf="user" class="profile">
+        <img src="{{user.img}}" tappable (click)="setPhoto()" />
+    </div>
+
+    <ion-item>
+        <ion-label class="text-grey-5" stacked>*姓名</ion-label>
+        <ion-input [(ngModel)]="username" type="text" placeholder="請輸入姓名"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label class="text-grey-5" stacked>*出生</ion-label>
+        <ion-datetime displayFormat="YYYY MMM DD" [(ngModel)]="birth"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+        <ion-label class="text-grey-5" stacked>*體重</ion-label>
+        <ion-input [(ngModel)]="weight" type="text" placeholder="請輸入體重"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label class="text-grey-5" stacked>*身高</ion-label>
+        <ion-input [(ngModel)]="height" type="text" placeholder="請輸入身高"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+        <ion-label class="text-grey-5" stacked>個人簡介</ion-label>
+        <ion-textarea [(ngModel)]="resume" cols="30" rows="4" placeholder="個人簡介" class="stroke stroke-2 stroke-grey-3">
+        </ion-textarea>
+    </ion-item>
+
+    <ion-item>
+        <ion-label *ngIf="!isFirstTime" class="text-grey-5" stacked>醫師代碼或名稱(選填)</ion-label>
+        <ion-label *ngIf="isFirstTime" class="text-grey-5" stacked>您的醫師姓名或醫師的代碼為何（無推薦醫師者免填)</ion-label>
+        <ion-input [(ngModel)]="expectId" type="text"></ion-input>
+    </ion-item>
+
+</ion-content>

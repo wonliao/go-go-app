@@ -1,0 +1,25 @@
+page-profile-detial {
+    .line-time {
+        text-align: center;
+        span {
+            display: inline-block;
+            height: 100%;
+            background: $grey-1;
+            width: 3px;
+        }
+    }
+    .left-time-flex {
+        display: flex;
+        flex-direction: column;
+        .day {
+            display: flex;
+            margin: auto;
+            margin-top: 0;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+        }
+    }
+}

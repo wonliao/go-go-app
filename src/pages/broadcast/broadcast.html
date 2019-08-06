@@ -1,0 +1,26 @@
+<!--
+  Generated template for the BroadcastPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <ion-buttons start class="mgl-10">
+            <button ion-button icon-only (click)="closeModal()">
+                <ion-icon fs-21 name="ios-close-outline"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>推播設定</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-label class="text-grey-5 mgt-20 mgb-0 mgl-20">體重量測通知(每日提醒時間)</ion-label>
+    <ion-item no-line>
+
+        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.timeStarts"></ion-datetime>
+    </ion-item>
+
+</ion-content>

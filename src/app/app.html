@@ -1,0 +1,68 @@
+<div *ngIf="settings!=null">
+
+    <ion-menu type="overlay" class="{{settings.skin.main_skin}}" [content]="content" id="menu-avatar" [swipeEnabled]="false">
+
+        <ion-content class="{{settings.skin.main_bg}}">
+
+            <div *ngIf="userData" class="info-user mgb-30 pdt-50 pdb-20 black-opct">
+
+                <div class="bg-img"></div>
+
+                <div class="profile wrapper-avt mgl-15 mgr-10">
+                    <img *ngIf="userData.img" src="{{userData.img}}" alt="">
+                </div>
+                <div class="main-info">
+                    <h2 class="user-name fs-20 fw-600 mg-0 text-white">{{userData.username}}</h2>
+                    <button ion-button clear small class="pd-0 mg-0 text-left text-grey-1">{{userData.phoneNumber}}</button>
+                </div>
+            </div>
+
+            <span class="text-white">
+
+                <ion-list>
+                    <!-- <button ion-item (click)="openPage(0)" class="transparent">
+                        個人資料
+                    </button> -->
+                    <button ion-item (click)="openPage(1)" class="transparent">
+                        付款紀錄
+                    </button>
+                    <button ion-item (click)="openPage(2)" class="transparent">
+                        購買計畫
+                    </button>
+                    <button ion-item (click)="openPage(3)" class="transparent">
+                        推播設定
+                    </button>
+                    <button ion-item (click)="openPage(4)" class="transparent">
+                        使用條款
+                    </button>
+                    <button ion-item (click)="openPage(5)" class="transparent">
+                        隱私權政策
+                    </button>
+                    <button ion-item (click)="openPage(6)" class="transparent">
+                        聯絡我們
+                    </button>
+                    <button ion-item (click)="logout()" class="transparent">
+                        登出
+                    </button>
+                </ion-list>
+
+                <!-- 隱藏功能 -->
+                <!-- <h5>隱藏功能</h5>
+                <ion-list>
+                    <button ion-item (click)="openPage(7)" class="transparent">
+                        聊天
+                    </button>
+                    <button ion-item (click)="openPage(8)" class="transparent">
+                        社團
+                    </button>
+                    <button ion-item (click)="openPage(9)" class="transparent">
+                        好友
+                    </button>
+                </ion-list> -->
+            </span>
+
+        </ion-content>
+    </ion-menu>
+
+    <ion-nav id="nav" #content [root]="rootPage"></ion-nav>
+</div>

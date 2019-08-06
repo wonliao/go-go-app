@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>手機綁定</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-grid>
+        <!-- <ion-row justify-content-center class="title-container">
+            <p class="page-title">請輸入你的手機號碼</p>
+        </ion-row> -->
+        <!-- <ion-row  justify-content-center class="contry-code-container">
+      <ion-item>
+        <ion-select placeholder="Select" [(ngModel)]="countryCode" name="code" class="select-country" placeholder="Select Country Code" >
+          <ion-option *ngFor="let item of countryList" value="{{item.dial_code}}">
+              {{item.dial_code}} - {{item.name}}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-row> -->
+        <ion-row justify-content-center class="title-container">
+            <p>為了保護帳號安全，請你輸入手機號碼與帳號綁定。<br/>綁定成功後，可以共享綁定相同手機號碼帳號的貼文、體重紀錄等資料。</p>
+        </ion-row>
+        <ion-row justify-content-center class="mobile-container">
+            <ion-item>
+                <!-- <ion-label stacked>手機號碼</ion-label> -->
+                <ion-input #mobileinput class="mobile-input" type="text" [(ngModel)]="phoneNumber" name="mobile" maxlength="16" placeholder="請輸入你的手機號碼"></ion-input>
+            </ion-item>
+        </ion-row>
+        <ion-row justify-content-center class="button-container">
+            <button ion-button round block class="sign-in-button" id="sign-in" (click)="updateContact()">
+        設定
+      </button>
+        </ion-row>
+    </ion-grid>
+</ion-content>

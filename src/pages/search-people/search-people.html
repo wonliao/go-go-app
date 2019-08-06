@@ -1,0 +1,44 @@
+<!-- <ion-header>
+    <ion-navbar hideBackButton="true">
+        <ion-title>專家</ion-title>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header> -->
+
+<ion-content>
+
+    <!-- 搜尋bar -->
+    <ion-searchbar [(ngModel)]="searchUser" placeholder="搜尋" showCancelButton="false" (ionChange)="getItems()" debounce="500"></ion-searchbar>
+
+
+    <div class="empty-list" *ngIf="accounts && accounts.length == 0">
+        <h1>
+            <ion-icon name="md-search"></ion-icon>
+        </h1>
+        <p>目前沒有專家</p>
+    </div>
+
+
+    <!-- 專家列表 -->
+    <ion-list class="avatar-list" *ngIf="accounts && accounts.length > 0">
+
+        <ion-item-sliding *ngFor="let account of accounts | searchFilter: [excludedIds, searchUser]" no-lines tappable (click)="viewUser(account.$key)" class="ani-right-to-left">
+            <ion-item class="white" no-lines>
+                <ion-avatar item-start>
+                    <img src="{{account.img}}">
+                </ion-avatar>
+
+                <h2 *ngIf="account.isExpert" no-lines style="color:#8acfba">{{account.username}} <img style="width:12px;" src="assets/images/so88_expert.png" /></h2>
+                <h2 *ngIf="!account.isExpert" no-lines>{{account.username}}</h2>
+
+
+                <div class="full-width" style="white-space: normal;">{{account.description}}</div>
+                <ion-note *ngIf="account.isOnline" item-end class="fs-12 text-green">線上</ion-note>
+            </ion-item>
+
+        </ion-item-sliding>
+
+    </ion-list>
+</ion-content>

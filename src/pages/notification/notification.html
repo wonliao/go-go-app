@@ -1,0 +1,29 @@
+<!-- <ion-header>
+    <ion-navbar hideBackButton="true">
+        <ion-title>通知</ion-title>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header> -->
+
+<ion-content>
+
+    <ion-list *ngIf="notifications">
+        <ion-item *ngFor="let item of notifications?.slice().reverse()" [ngClass]="{'isReadClass' : item.isRead}" style="background: aliceblue" (click)="gotoTimeline(item)">
+            <ion-avatar item-start>
+                <img *ngIf="item.avatar" src="{{item.avatar}}">
+            </ion-avatar>
+            <div class="full-width" style="white-space: normal;">
+                <span class="text-blue">{{item.name}}</span> {{item.message}}
+            </div>
+            <ion-note>{{item.dateCreated | DateFormat}}</ion-note>
+
+            <ion-thumbnail item-end>
+                <img *ngIf="item.image" src="{{item.image}}">
+            </ion-thumbnail>
+
+        </ion-item>
+    </ion-list>
+
+</ion-content>

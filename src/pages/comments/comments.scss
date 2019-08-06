@@ -1,0 +1,30 @@
+page-comments {
+    .toolbar-title {
+        color: black;
+    }
+    .bar-button-ios[icon-only] ion-icon {
+        font-size: 40px;
+        margin-right: 10px;
+    }
+    ion-note {
+        font-size: 12px;
+        align-self: flex-start;
+        margin-top: 14px;
+    }
+    ion-avatar img,
+    ion-thumbnail img {
+        border-radius: 50%;
+        overflow: hidden;
+        width: 36px;
+        height: 36px;
+    }
+    ion-footer {
+        border-top: lightgray 1px solid;
+    }
+    .myComment .item-inner {
+        background: #eee;
+        margin: 4px 16px 4px 0;
+        border-radius: 20px;
+        padding: 5px;
+    }
+}
